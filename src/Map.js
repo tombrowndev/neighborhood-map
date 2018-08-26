@@ -44,7 +44,7 @@ const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
         onClick={() => { props.openInfoWindow(data.id) }}>
 
       {props.infoWindowOpen && props.activeLocation === data.id && (
-          <InfoWindow onCloseClick={() => { props.closeInfoWindow() }}>
+          <InfoWindow onCloseClick={props.closeInfoWindow}>
             <div></div>
           </InfoWindow>
       )}
