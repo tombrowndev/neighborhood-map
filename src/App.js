@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import './App.css';
+
+/* Components */
+import Sidebar from './Sidebar'
+import Map from './Map'
 
 class App extends Component {
+  state = {
+    locations: []
+  }
+
   render() {
+    const {locations} = this.state
     return (
-      <div className="App">
-        
+      <div id="App">
+        <Sidebar locations={locations} />
+        <Map locations={locations} />
       </div>
     );
   }
