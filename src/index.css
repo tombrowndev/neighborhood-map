@@ -45,6 +45,14 @@ body {
   padding: 15px 10px;
   cursor: pointer;
 }
+#sidebar .location-list li.active {
+  background-color: #fff;
+  color: #000;
+}
+#sidebar .location-list li.active:hover, #sidebar .location-list li.active:focus {
+  background-color: #ddd;
+  color: #000;
+}
 #sidebar .location-list li:hover,  #sidebar .location-list li:focus{
   background-color: rgba(0,0,0,0.5);
   outline: 0;

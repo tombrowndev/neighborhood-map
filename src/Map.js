@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow, FaAnchor } from 'react-google-maps'
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 /* Config */
 import {gmKey} from './config'
 
 class Map extends PureComponent {
   render() {
-    const { locations, infoWindowOpen, activeLocation, openInfoWindow, closeInfoWindow } = this.props
+    const { locations, infoWindowOpen, activeLocation, toggleInfoWindow } = this.props
     const element = <div style={{ height: `100%` }} />
 
     return (
@@ -19,8 +19,7 @@ class Map extends PureComponent {
           locations={locations}
           infoWindowOpen={infoWindowOpen}
           activeLocation={activeLocation}
-          openInfoWindow={openInfoWindow}
-          closeInfoWindow={closeInfoWindow}
+          toggleInfoWindow={toggleInfoWindow}
         />
       </div>
     );
@@ -36,16 +35,18 @@ const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
       lng: -1.1347837
     }}
   >
-    {props.locations.length && props.locations.map((data) => (
+    {props.locations.length && props.locations.map((location) => (
       <Marker
-        id={data.id}
-        position={data.position}
-        title={data.name}
-        onClick={() => { props.openInfoWindow(data.id) }}>
+        key={location.id}
+        position={location.position}
+        title={location.name}
+        onClick={() => { props.toggleInfoWindow(location.id) }}>
 
-      {props.infoWindowOpen && props.activeLocation === data.id && (
-          <InfoWindow onCloseClick={props.closeInfoWindow}>
-            <div></div>
+      {props.infoWindowOpen && props.activeLocation === location.id && (
+          <InfoWindow onCloseClick={() => { props.toggleInfoWindow(location.id) }}>
+            <div>
+              {location.name}
+            </div>
           </InfoWindow>
       )}
 

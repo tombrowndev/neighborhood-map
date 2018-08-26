@@ -27,7 +27,7 @@ class Sidebar extends Component {
 
   render() {
     const {sidebarOpen} = this.state
-    const {locations} = this.props
+    const {locations, toggleInfoWindow, infoWindowOpen, activeLocation} = this.props
 
     // Determine toggle button state
     const toggleClass = sidebarOpen ? 'open' : 'closed'
@@ -46,7 +46,14 @@ class Sidebar extends Component {
           </div>
           <ul className="location-list">
             {locations.length && locations.map((location) => (
-              <li key={location.id} tabIndex="0">{location.name}</li>
+              <li 
+                key={location.id} 
+                tabIndex="0"
+                onClick={() => { toggleInfoWindow(location.id) }}
+                className={(infoWindowOpen && activeLocation === location.id) ? 'active' : 'inactive'}
+              >
+                {location.name}
+              </li>
             ))}
           </ul>
       </div>

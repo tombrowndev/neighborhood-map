@@ -40,11 +40,16 @@ class App extends Component {
   }
 
   // Opens the info window
-  openInfoWindow = (id) => {
-    this.setState({
-      infoWindowOpen: true,
-      activeLocation: id
-    })
+  toggleInfoWindow = (id) => {
+    //If it's already open and the id is the same as the current active location
+    if(this.state.infoWindowOpen && id === this.state.activeLocation) {
+      this.closeInfoWindow()
+    } else {
+      this.setState({
+        infoWindowOpen: true,
+        activeLocation: id
+      })
+    }
   }
 
   // Closes the info window
@@ -59,12 +64,17 @@ class App extends Component {
 
     return (
       <div id="app">
-        <Sidebar locations={locations} />
+        <Sidebar 
+          locations={locations}
+          toggleInfoWindow={this.toggleInfoWindow}
+          infoWindowOpen={infoWindowOpen}
+          activeLocation={activeLocation}
+        />
         <Map 
           locations={locations}
           infoWindowOpen={infoWindowOpen}
           activeLocation={activeLocation}
-          openInfoWindow={this.openInfoWindow}
+          toggleInfoWindow={this.toggleInfoWindow}
           closeInfoWindow={this.closeInfoWindow} />
       </div>
     );
