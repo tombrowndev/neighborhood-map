@@ -4,7 +4,6 @@ body {
   font-family: sans-serif;
   overflow: hidden;
 }
-
 #sidebar {
   position: fixed;
   width: 50px;
@@ -14,25 +13,22 @@ body {
   background-color: #333;
   z-index: 1000;
   padding-top: 60px;
+  box-sizing: border-box;
 
   transition: width 160ms;
 }
-
 #sidebar.open {
-  width: 300px;
+  width: 240px;
 }
-
 #sidebar .sidebar-toggle {
   display: block;
   margin: -55px 10px 0 auto;
   width: 30px;
   cursor: pointer;
 }
-
 #sidebar .sidebar-toggle:focus {
   background-color: rgba(0,0,0,0.2);
 }
-
 #map {
   position: fixed;
   top: 0;
@@ -40,4 +36,18 @@ body {
   bottom: 0;
   left: 50px;
   z-index: 500;
+}
+
+/* ########### Responsive ########### */
+@media screen and (min-width: 768px) {
+  #sidebar.closed {
+    width: 240px;
+    padding-top: 10px;
+  }
+  #sidebar .sidebar-toggle {
+    display: none;
+  }
+  #map {
+    left: 240px;
+  }
 }
