@@ -9,21 +9,18 @@ import {fsId, fsScrt} from './config.js'
 
 class App extends Component {
   state = {
-    locations: []
+    locations: [],
+    infoWindowOpen: false,
+    activeLocation: 0
   }
 
   componentDidMount() {
     this.getLocalLocations()
-      .then(localData => {
-        // Loop through each local location and get the info from Foursquare
-        return Promise.all(localData.map((localLocation) => (
-          this.getLocationFromFoursquare(localLocation.foursquareId)
-            .then((data) => data.response.venue)
-        )))
-      })
       .then((locations) => {
-        // Add location to state
         this.setState({locations})
+      })
+      .catch((error) => {
+        console.log('Can\'t fetch local data', error)
       })
   }
 
@@ -32,31 +29,43 @@ class App extends Component {
   getLocalLocations = () => {
     return fetch('./data/locations.json')
       .then((res) => {
+        if(res.status !== 200) {
+          throw Error('Local Location Data. HTTP Code: ' + res.status)
+        }
         return res.json()
       })
-      .catch((error) => {
-        console.log('Can\'t fetch the local location data', error)
+      .then(data => {
+        return data
       })
   }
 
-  // Fetch location data (Foursquare)
-  // Returns a Promise
-  getLocationFromFoursquare = (id) => {
-    return fetch('https://api.foursquare.com/v2/venues/'+id+'?client_id='+fsId+'&client_secret='+fsScrt+'&v=201800826')
-      .then((res) => {
-        return res.json()
-      })
-      .catch((error) => {
-        console.log('Can\'t fetch the Foursquare data', error)
-      })
+  // Opens the info window
+  openInfoWindow = (id) => {
+    this.setState({
+      infoWindowOpen: true,
+      activeLocation: id
+    })
+  }
+
+  // Closes the info window
+  closeInfoWindow = () => {
+    this.setState({
+      infoWindowOpen: false
+    })
   }
 
   render() {
-    const {locations} = this.state
+    const {locations, infoWindowOpen, activeLocation} = this.state
+
     return (
       <div id="app">
         <Sidebar locations={locations} />
-        <Map locations={locations} />
+        <Map 
+          locations={locations}
+          infoWindowOpen={infoWindowOpen}
+          activeLocation={activeLocation}
+          openInfoWindow={this.openInfoWindow}
+          closeInfoWindow={this.closeInfoWindow} />
       </div>
     );
   }

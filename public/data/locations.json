@@ -1,10 +1,47 @@
 [
     {
         "id": 0,
+        "name": "Curve Theatre",
+        "position": {
+            "lat": 52.6356481,
+            "lng": -1.1295404
+        },
         "foursquareId": "4b4f211cf964a520f7fa26e3"
     },
     {
         "id": 1,
+        "name": "Highcross Shopping Centre",
+        "position": {
+            "lat": 52.6366703,
+            "lng": -1.1386005
+        },
+        "foursquareId": "4b5afb30f964a52041dd28e3"
+    },
+    {
+        "id": 2,
+        "name": "King Power Stadium",
+        "position": {
+            "lat": 52.6203694,
+            "lng": -1.1443782
+        },
+        "foursquareId": "4b5afb30f964a52041dd28e3"
+    },
+    {
+        "id": 3,
+        "name": "Haymarket Theatre",
+        "position": {
+            "lat": 52.6370952,
+            "lng": -1.1342374
+        },
+        "foursquareId": "4b5afb30f964a52041dd28e3"
+    },
+    {
+        "id": 4,
+        "name": "Leicester Train Station",
+        "position": {
+            "lat": 52.631192,
+            "lng": -1.1273171
+        },
         "foursquareId": "4b5afb30f964a52041dd28e3"
     }
 ]

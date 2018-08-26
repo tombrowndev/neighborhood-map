@@ -45,8 +45,8 @@ class Sidebar extends Component {
             <img alt="Hamburger Icon" src={menuIcon} />
           </div>
           <ul className="location-list">
-            {locations.map((location) => (
-              <li tabIndex="0">{location.name}</li>
+            {locations.length && locations.map((location) => (
+              <li key={location.id} tabIndex="0">{location.name}</li>
             ))}
           </ul>
       </div>
