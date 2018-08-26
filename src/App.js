@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     const {locations} = this.state
     return (
-      <div id="App">
+      <div id="app">
         <Sidebar locations={locations} />
         <Map locations={locations} />
       </div>

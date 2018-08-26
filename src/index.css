@@ -2,4 +2,42 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  overflow: hidden;
+}
+
+#sidebar {
+  position: fixed;
+  width: 50px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #333;
+  z-index: 1000;
+  padding-top: 60px;
+
+  transition: width 160ms;
+}
+
+#sidebar.open {
+  width: 300px;
+}
+
+#sidebar .sidebar-toggle {
+  display: block;
+  margin: -55px 10px 0 auto;
+  width: 30px;
+  cursor: pointer;
+}
+
+#sidebar .sidebar-toggle:focus {
+  background-color: rgba(0,0,0,0.2);
+}
+
+#map {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50px;
+  z-index: 500;
 }
