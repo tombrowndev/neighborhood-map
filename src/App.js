@@ -11,7 +11,8 @@ class App extends Component {
   state = {
     locations: [],
     infoWindowOpen: false,
-    activeLocation: 0
+    activeLocation: 0,
+    filterValue: ''
   }
 
   componentDidMount() {
@@ -59,8 +60,13 @@ class App extends Component {
     })
   }
 
+  // Handles the filter text input
+  handleFilterInput = (event) => {
+    this.setState({filterValue: event.target.value})
+  }
+
   render() {
-    const {locations, infoWindowOpen, activeLocation} = this.state
+    const {locations, infoWindowOpen, activeLocation, filterValue} = this.state
 
     return (
       <div id="app">
@@ -69,13 +75,17 @@ class App extends Component {
           toggleInfoWindow={this.toggleInfoWindow}
           infoWindowOpen={infoWindowOpen}
           activeLocation={activeLocation}
+          filterValue={filterValue}
+          handleFilterInput={this.handleFilterInput}
         />
         <Map 
           locations={locations}
           infoWindowOpen={infoWindowOpen}
           activeLocation={activeLocation}
           toggleInfoWindow={this.toggleInfoWindow}
-          closeInfoWindow={this.closeInfoWindow} />
+          closeInfoWindow={this.closeInfoWindow}
+          filterValue={filterValue}
+          />
       </div>
     );
   }

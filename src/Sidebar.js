@@ -27,7 +27,7 @@ class Sidebar extends Component {
 
   render() {
     const {sidebarOpen} = this.state
-    const {locations, toggleInfoWindow, infoWindowOpen, activeLocation} = this.props
+    const {locations, toggleInfoWindow, infoWindowOpen, activeLocation, filterValue, handleFilterInput} = this.props
 
     // Determine toggle button state
     const toggleClass = sidebarOpen ? 'open' : 'closed'
@@ -43,6 +43,9 @@ class Sidebar extends Component {
             onClick={this.handleToggleClick}
             onKeyDown={this.handleToggleKeyDown}>
             <img alt="Hamburger Icon" src={menuIcon} />
+          </div>
+          <div className="filter-control">
+            <input type="text" value={filterValue} onChange={handleFilterInput} aria-label="Filter Locations"/>
           </div>
           <ul className="location-list">
             {locations.length && locations.map((location) => (
