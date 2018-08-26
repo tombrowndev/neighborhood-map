@@ -3,15 +3,15 @@ import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps'
 
 class Map extends Component {
   render() {
-    const GoogleMapContainer = withScriptjs()
+    const element = <div style={{ height: `100%` }} />
 
     return (
       <div id="map">
         <DumbGoogleMap
           googleMapURL="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCaGDMnRUJcAFA47lv7cIFlVZ_gYfGQATg"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100%` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
+          loadingElement={element}
+          containerElement={element}
+          mapElement={element}
         />
       </div>
     );
@@ -23,8 +23,8 @@ const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
   <GoogleMap
     defaultZoom={14}
     defaultCenter={{
-      lat: 52.6364897,
-      lng: -1.1385945
+      lat: 52.633857,
+      lng: -1.1384924
     }}
   >
   </GoogleMap>
