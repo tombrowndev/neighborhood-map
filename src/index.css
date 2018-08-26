@@ -29,6 +29,19 @@ body {
 #sidebar .sidebar-toggle:focus {
   background-color: rgba(0,0,0,0.2);
 }
+#sidebar .location-list {
+  list-style-type: none;
+  padding: 0;
+}
+#sidebar .location-list li {
+  color: #ffffff;
+  display: block;
+  padding: 15px 10px;
+  cursor: pointer;
+}
+#sidebar .location-list li:hover,  #sidebar .location-list li:focus{
+  background-color: rgba(0,0,0,0.5);
+}
 #map {
   position: fixed;
   top: 0;

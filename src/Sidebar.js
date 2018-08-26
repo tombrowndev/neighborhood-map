@@ -27,6 +27,7 @@ class Sidebar extends Component {
 
   render() {
     const {sidebarOpen} = this.state
+    const {locations} = this.props
 
     // Determine toggle button state
     const toggleClass = sidebarOpen ? 'open' : 'closed'
@@ -43,6 +44,11 @@ class Sidebar extends Component {
             onKeyDown={this.handleToggleKeyDown}>
             <img alt="Hamburger Icon" src={menuIcon} />
           </div>
+          <ul className="location-list">
+            {locations.map((location) => (
+              <li tabIndex="0">{location.name}</li>
+            ))}
+          </ul>
       </div>
     );
   }
