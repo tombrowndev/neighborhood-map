@@ -6,32 +6,38 @@ body {
 }
 #sidebar {
   position: fixed;
-  width: 50px;
+  width: 240px;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: -190px;
   background-color: #333;
   z-index: 1000;
   padding-top: 60px;
   box-sizing: border-box;
 
-  transition: width 160ms;
+  transition: left 160ms;
 }
 #sidebar.open {
-  width: 240px;
+  left: 0;
 }
 #sidebar .sidebar-toggle {
   display: block;
-  margin: -55px 10px 0 auto;
+  margin: -55px 7px 0 auto;
   width: 30px;
   cursor: pointer;
+  padding: 3px 6px 0 3px; 
 }
 #sidebar .sidebar-toggle:focus {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0,0,0,0.5);
+  outline: 0;
 }
 #sidebar .location-list {
   list-style-type: none;
   padding: 0;
+  display: none;
+}
+#sidebar.open .location-list {
+  display: block;
 }
 #sidebar .location-list li {
   color: #ffffff;
@@ -41,6 +47,7 @@ body {
 }
 #sidebar .location-list li:hover,  #sidebar .location-list li:focus{
   background-color: rgba(0,0,0,0.5);
+  outline: 0;
 }
 #map {
   position: fixed;
@@ -53,9 +60,14 @@ body {
 
 /* ########### Responsive ########### */
 @media screen and (min-width: 768px) {
+  #sidebar {
+    padding-top: 0px;
+  }
   #sidebar.closed {
-    width: 240px;
-    padding-top: 10px;
+    left: 0px;
+  }
+  #sidebar.closed .location-list {
+    display: block;
   }
   #sidebar .sidebar-toggle {
     display: none;
