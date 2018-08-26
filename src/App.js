@@ -12,7 +12,7 @@ class App extends Component {
     locations: [],
     infoWindowOpen: false,
     activeLocation: 0,
-    filterValue: ''
+    query: ''
   }
 
   componentDidMount() {
@@ -61,12 +61,12 @@ class App extends Component {
   }
 
   // Handles the filter text input
-  handleFilterInput = (event) => {
-    this.setState({filterValue: event.target.value})
+  updateFilterQuery = (event) => {
+    this.setState({query: event.target.value})
   }
 
   render() {
-    const {locations, infoWindowOpen, activeLocation, filterValue} = this.state
+    const {locations, infoWindowOpen, activeLocation, query} = this.state
 
     return (
       <div id="app">
@@ -75,8 +75,8 @@ class App extends Component {
           toggleInfoWindow={this.toggleInfoWindow}
           infoWindowOpen={infoWindowOpen}
           activeLocation={activeLocation}
-          filterValue={filterValue}
-          handleFilterInput={this.handleFilterInput}
+          updateFilterQuery={this.updateFilterQuery}
+          query={query}
         />
         <Map 
           locations={locations}
@@ -84,7 +84,7 @@ class App extends Component {
           activeLocation={activeLocation}
           toggleInfoWindow={this.toggleInfoWindow}
           closeInfoWindow={this.closeInfoWindow}
-          filterValue={filterValue}
+          query={query}
           />
       </div>
     );

@@ -3,7 +3,8 @@ import menuIcon from './menu.svg'
 
 class Sidebar extends Component {
   state = {
-    sidebarOpen: false
+    sidebarOpen: false,
+    filterValue: ''
   }
 
   // If the user clicks the menu button
@@ -25,12 +26,20 @@ class Sidebar extends Component {
     })
   }
 
+  // Connects the filter input
+  handleFilterInput = (event) => {
+    this.setState({filterValue: event.target.value})
+  }
+
   render() {
-    const {sidebarOpen} = this.state
-    const {locations, toggleInfoWindow, infoWindowOpen, activeLocation, filterValue, handleFilterInput} = this.props
+    const {sidebarOpen, filterValue} = this.state
+    const {locations, toggleInfoWindow, infoWindowOpen, activeLocation} = this.props
 
     // Determine toggle button state
     const toggleClass = sidebarOpen ? 'open' : 'closed'
+
+    // Filter locations
+    
 
     return (
       <div id="sidebar" className={toggleClass}>
@@ -45,7 +54,7 @@ class Sidebar extends Component {
             <img alt="Hamburger Icon" src={menuIcon} />
           </div>
           <div className="filter-control">
-            <input type="text" value={filterValue} onChange={handleFilterInput} aria-label="Filter Locations"/>
+            <input type="text" value={filterValue} onChange={this.handleFilterInput} aria-label="Filter Locations"/>
           </div>
           <ul className="location-list">
             {locations.length && locations.map((location) => (
