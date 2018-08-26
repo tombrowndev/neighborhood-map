@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps'
 
+/* Config */
+import {gmKey} from './config'
+
 class Map extends Component {
   render() {
     const element = <div style={{ height: `100%` }} />
@@ -8,7 +11,7 @@ class Map extends Component {
     return (
       <div id="map">
         <DumbGoogleMap
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCaGDMnRUJcAFA47lv7cIFlVZ_gYfGQATg"
+          googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3&key=" + gmKey}
           loadingElement={element}
           containerElement={element}
           mapElement={element}
