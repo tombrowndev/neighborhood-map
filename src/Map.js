@@ -23,8 +23,8 @@ const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
   <GoogleMap
     defaultZoom={14}
     defaultCenter={{
-      lat: 52.633857,
-      lng: -1.1384924
+      lat: 52.6335473,
+      lng: -1.1316537
     }}
   >
   </GoogleMap>
