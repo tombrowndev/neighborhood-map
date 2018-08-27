@@ -17,7 +17,7 @@ Below is a list of project dependancies. These are either included in the html v
 * prop-types (15.6.2)
 * react (16.4.2)
 * react-google-maps (9.4.5) <--- Update credentials in src/config.js
-* react-scripts
+* react-scripts (1.1.5)
 
 ## Credits
 * FIlter and Menu Icons from FontAwesome
