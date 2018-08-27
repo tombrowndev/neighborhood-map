@@ -60,7 +60,7 @@ class Sidebar extends Component {
             <input type="button" onClick={() => { updateFilterQuery(filterValue) }} value="Filter"/>
           </div>
           <ul className="location-list">
-            {(typeof filteredLocations !== 'undefined') && filteredLocations.length && filteredLocations.map((location) => (
+            {(typeof filteredLocations !== 'undefined') && filteredLocations.length > 0 && filteredLocations.map((location) => (
               <li 
                 key={location.id} 
                 tabIndex="0"
