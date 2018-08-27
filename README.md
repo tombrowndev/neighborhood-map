@@ -16,9 +16,9 @@ Below is a list of project dependancies. These are either included in the html v
 * escape-string-regexp (1.0.5)
 * prop-types (15.6.2)
 * react (16.4.2)
-* react-google-maps (9.4.5) <--- Update credentials in app/config.js
+* react-google-maps (9.4.5) <--- Update credentials in src/config.js
 * react-scripts
 
 ## Credits
 * FIlter and Menu Icons from FontAwesome
-* Data via Foursquare API <--- Update credentials in app/config.js
+* Data via Foursquare API <--- Update credentials in src/config.js
