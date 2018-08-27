@@ -109,7 +109,7 @@ class App extends Component {
   // Updates the query
   updateFilterQuery = (query) => {
     this.closeInfoWindow()
-    this.setState({query: query})
+    this.setState({query: query.trim()})
   }
 
   render() {

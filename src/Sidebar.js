@@ -15,13 +15,6 @@ class Sidebar extends Component {
     this.toggleSidebar()
   }
 
-  // If the user is focused on the toggle button and presses enter (key 32)
-  handleToggleKeyDown = (event) => {
-    if(event.keyCode === 32) {
-      this.toggleSidebar()
-    }
-  }
-
   // Toggles whether the sidebar is open
   toggleSidebar = () => {
     this.setState((state) => {
@@ -32,6 +25,27 @@ class Sidebar extends Component {
   // Connects the filter input
   handleFilterInput = (event) => {
     this.setState({filterValue: event.target.value})
+  }
+
+  // If the user is focused on the toggle button and presses space enter
+  handleToggleKeyDown = (event) => {
+    if(event.keyCode === 32 || event.keyCode === 13) {
+      this.toggleSidebar()
+    }
+  }
+
+  // If the user is focused on a list and presses space or enter
+  handleListItemKeyDown = (event, location) => {
+    if(event.keyCode === 32 || event.keyCode === 13) {
+      this.props.toggleInfoWindow(location)
+    }
+  }
+
+  // If the user is focused on a list and presses enter
+  handleFilterKeyDown = (event) => {
+    if(event.keyCode === 13) {
+      this.props.updateFilterQuery(this.state.filterValue)
+    }
   }
 
   render() {
@@ -56,21 +70,36 @@ class Sidebar extends Component {
             onKeyDown={this.handleToggleKeyDown}>
           </div>
           <div className="filter-control">
-            <input type="text" value={filterValue} placeholder="Filter Locations" onChange={this.handleFilterInput} aria-label="Filter Locations"/>
+            <input
+              type="text"
+              value={filterValue}
+              placeholder="Filter Locations"
+              onChange={this.handleFilterInput}
+              onKeyDown={this.handleFilterKeyDown}
+              aria-label="Filter Locations"
+            />
             <input type="button" onClick={() => { updateFilterQuery(filterValue) }} value="Filter"/>
           </div>
-          <ul className="location-list">
-            {(typeof filteredLocations !== 'undefined') && filteredLocations.length > 0 && filteredLocations.map((location) => (
-              <li 
-                key={location.id} 
-                tabIndex="0"
-                onClick={() => { toggleInfoWindow(location) }}
-                className={(infoWindowOpen && activeLocation === location.id) ? 'active' : 'inactive'}
-              >
-                {location.name}
-              </li>
-            ))}
-          </ul>
+          {(typeof filteredLocations !== 'undefined') && filteredLocations.length > 0 && (
+          <nav>
+            <ul className="location-list">
+              {filteredLocations.map((location) => (
+                <li 
+                  key={location.id} 
+                  tabIndex="0"
+                  role="button"
+                  aria-pressed={(infoWindowOpen &&activeLocation === location.id)}
+                  title={"View information about " + location.name}
+                  onClick={() => { toggleInfoWindow(location) }}
+                  onKeyDown={(event) => { this.handleListItemKeyDown(event, location) }}
+                  className={(infoWindowOpen && activeLocation === location.id) ? 'active' : 'inactive'}
+                >
+                  {location.name}
+                </li>
+              ))}
+            </ul>
+          </nav>
+          )}
       </div>
     );
   }
