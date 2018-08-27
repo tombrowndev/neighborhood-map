@@ -105,6 +105,9 @@ body {
   #sidebar.closed {
     left: 0px;
   }
+  #sidebar.closed .filter-control {
+    display: flex;
+  }
   #sidebar.closed .location-list {
     display: block;
   }
