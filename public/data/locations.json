@@ -24,16 +24,16 @@
             "lat": 52.6203694,
             "lng": -1.1443782
         },
-        "foursquareId": "4b5afb30f964a52041dd28e3"
+        "foursquareId": "4b6ae87ef964a52055e62be3"
     },
     {
         "id": 3,
-        "name": "Haymarket Theatre",
+        "name": "New Walk Museum",
         "position": {
-            "lat": 52.6370952,
-            "lng": -1.1342374
+            "lat": 52.6289496,
+            "lng": -1.127933
         },
-        "foursquareId": "4b5afb30f964a52041dd28e3"
+        "foursquareId": "4b50c1b1f964a520243127e3"
     },
     {
         "id": 4,
@@ -42,6 +42,6 @@
             "lat": 52.631192,
             "lng": -1.1273171
         },
-        "foursquareId": "4b5afb30f964a52041dd28e3"
+        "foursquareId": "4b630b85f964a5208c5f2ae3"
     }
 ]

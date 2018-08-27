@@ -9,7 +9,7 @@ import {filterLocations} from './utils'
 
 class Map extends PureComponent {
   render() {
-    const { locations, infoWindowOpen, activeLocation, toggleInfoWindow, query } = this.props
+    const { locations, infoWindowOpen, activeLocation, locationData, toggleInfoWindow, query } = this.props
     const element = <div style={{ height: `100%` }} />
 
     // Filter locations
@@ -25,6 +25,7 @@ class Map extends PureComponent {
           locations={filteredLocations}
           infoWindowOpen={infoWindowOpen}
           activeLocation={activeLocation}
+          locationData={locationData}
           toggleInfoWindow={toggleInfoWindow}
         />
       </div>
@@ -46,14 +47,29 @@ const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
         key={location.id}
         position={location.position}
         title={location.name}
-        onClick={() => { props.toggleInfoWindow(location.id) }}
+        onClick={() => { props.toggleInfoWindow(location) }}
         animation={(props.infoWindowOpen && props.activeLocation === location.id) ? 1 : 3}
       >
 
       {props.infoWindowOpen && props.activeLocation === location.id && (
-          <InfoWindow onCloseClick={() => { props.toggleInfoWindow(location.id) }}>
-            <div>
-              {location.name}
+          <InfoWindow onCloseClick={() => { props.toggleInfoWindow(location) }}>
+            <div className="info-card">
+              <h4>{location.name}</h4>
+              <hr/>
+              {props.locationData.hasOwnProperty('error') ? (
+                <p>{props.locationData.error}</p>
+              ):(
+              <div className="foursquare-data">
+                <b>Rating</b>
+                <p>{props.locationData.rating}</p>
+                <b>Status</b>
+                <p>{props.locationData.status}</p>
+                <b>Contact</b>
+                 <p>{props.locationData.phone}</p>
+                <hr/>
+                <p>Data from the <a href="https://foursquare.com">Foursquare API</a></p>
+              </div>
+              )}
             </div>
           </InfoWindow>
       )}

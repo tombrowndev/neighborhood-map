@@ -63,7 +63,7 @@ class Sidebar extends Component {
               <li 
                 key={location.id} 
                 tabIndex="0"
-                onClick={() => { toggleInfoWindow(location.id) }}
+                onClick={() => { toggleInfoWindow(location) }}
                 className={(infoWindowOpen && activeLocation === location.id) ? 'active' : 'inactive'}
               >
                 {location.name}
