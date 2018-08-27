@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 /* Utilities */
 import {filterLocations} from './utils'
@@ -59,7 +60,7 @@ class Sidebar extends Component {
             <input type="button" onClick={() => { updateFilterQuery(filterValue) }} value="Filter"/>
           </div>
           <ul className="location-list">
-            {filteredLocations.length && filteredLocations.map((location) => (
+            {(typeof filteredLocations !== 'undefined') && filteredLocations.length && filteredLocations.map((location) => (
               <li 
                 key={location.id} 
                 tabIndex="0"
@@ -73,6 +74,15 @@ class Sidebar extends Component {
       </div>
     );
   }
+}
+
+Sidebar.propTypes = {
+  locations: PropTypes.array,
+  toggleInfoWindow: PropTypes.func.isRequired,
+  infoWindowOpen: PropTypes.bool.isRequired,
+  activeLocation: PropTypes.number,
+  updateFilterQuery: PropTypes.func.isRequired,
+  query: PropTypes.string
 }
 
 export default Sidebar;

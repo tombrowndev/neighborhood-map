@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 /* Config */
@@ -33,6 +34,15 @@ class Map extends PureComponent {
   }
 }
 
+Map.propTypes = {
+  locations: PropTypes.array,
+  infoWindowOpen: PropTypes.bool.isRequired,
+  activeLocation: PropTypes.number,
+  toggleInfoWindow: PropTypes.func.isRequired,
+  query: PropTypes.string,
+  locationData: PropTypes.object
+}
+
 // The dumb container which includes the scripts required for the google maps api
 const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
   <GoogleMap
@@ -48,7 +58,7 @@ const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
         position={location.position}
         title={location.name}
         onClick={() => { props.toggleInfoWindow(location) }}
-        animation={(props.infoWindowOpen && props.activeLocation === location.id) ? 1 : 3}
+        animation={(props.infoWindowOpen && props.activeLocation === location.id) ? 1 : 0}
       >
 
       {props.infoWindowOpen && props.activeLocation === location.id && (
@@ -79,5 +89,17 @@ const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
     ))}
   </GoogleMap>
 )))
+
+DumbGoogleMap.propTypes = {
+  googleMapURL: PropTypes.string.isRequired,
+  loadingElement: PropTypes.object.isRequired,
+  containerElement: PropTypes.object.isRequired,
+  mapElement: PropTypes.object.isRequired,
+  locations: PropTypes.array,
+  infoWindowOpen: PropTypes.bool.isRequired,
+  activeLocation: PropTypes.number,
+  locationData: PropTypes.object,
+  toggleInfoWindow: PropTypes.func.isRequired
+}
 
 export default Map;

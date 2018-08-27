@@ -102,7 +102,7 @@ class App extends Component {
   closeInfoWindow = () => {
     this.setState({
       infoWindowOpen: false,
-      'locationData': ''
+      'locationData': {}
     })
   }
 
@@ -130,7 +130,6 @@ class App extends Component {
           infoWindowOpen={infoWindowOpen}
           activeLocation={activeLocation}
           toggleInfoWindow={this.toggleInfoWindow}
-          closeInfoWindow={this.closeInfoWindow}
           query={query}
           locationData={locationData}
           />

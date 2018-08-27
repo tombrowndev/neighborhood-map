@@ -1,7 +1,7 @@
 import escapeRegExp from 'escape-string-regexp'
 
 export const filterLocations = (query, locations) => {
-    if(query === '') {
+    if(query === '' || (typeof query === 'undefined')) {
         return locations
     }
 
