@@ -22,18 +22,23 @@ body {
 }
 #sidebar .sidebar-toggle {
   display: block;
-  margin: -55px 7px 0 auto;
-  width: 30px;
+  margin: -60px 0 0 auto;
+  height: 40px;
+  width: 40px;
   cursor: pointer;
-  padding: 3px 6px 0 3px; 
+  background: url(menu.svg) 50% no-repeat;
+  background-size: 25px;
 }
 #sidebar .sidebar-toggle:focus {
   background-color: rgba(0,0,0,0.5);
   outline: 0;
 }
 #sidebar .filter-control {
-  display: flex;
+  display: none;
   position: relative;
+}
+#sidebar.open .filter-control {
+  display: flex;
 }
 #sidebar .filter-control input[type=text] {
   width: 200px;
@@ -45,8 +50,8 @@ body {
   width: 40px;
   height: 40px;
   border: none;
-  background: url(filter.svg) #7919e8 10px 10px no-repeat;
-  background-size: 20px;
+  background: url(filter.svg) #7919e8 50% no-repeat;
+  background-size: 15px;
   font-size: 0;
   line-height: 0;
   cursor: pointer;
@@ -59,6 +64,7 @@ body {
   list-style-type: none;
   padding: 0;
   display: none;
+  margin-top: 5px;
 
 }
 #sidebar.open .location-list {

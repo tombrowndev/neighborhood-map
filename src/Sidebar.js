@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import menuIcon from './menu.svg'
 
 /* Utilities */
 import {filterLocations} from './utils'
@@ -54,7 +53,6 @@ class Sidebar extends Component {
             title="Toggle Sidebar"
             onClick={this.handleToggleClick}
             onKeyDown={this.handleToggleKeyDown}>
-            <img alt="Hamburger Icon" src={menuIcon} />
           </div>
           <div className="filter-control">
             <input type="text" value={filterValue} placeholder="Filter Locations" onChange={this.handleFilterInput} aria-label="Filter Locations"/>
