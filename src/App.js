@@ -62,7 +62,7 @@ class App extends Component {
 
   // Updates the query
   updateFilterQuery = (query) => {
-    this.setState({query: query})
+    this.setState({query: query, infoWindowOpen: false})
   }
 
   render() {
