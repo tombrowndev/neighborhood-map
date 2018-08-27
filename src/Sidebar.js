@@ -48,6 +48,13 @@ class Sidebar extends Component {
     }
   }
 
+  // Reset the filter query
+  resetFilter = (event) => {
+    event.preventDefault()
+    this.setState({filterValue: ''})
+    this.props.updateFilterQuery('')
+  }
+
   render() {
     const {sidebarOpen, filterValue} = this.state
     const {locations, toggleInfoWindow, infoWindowOpen, activeLocation, updateFilterQuery, query} = this.props
@@ -99,6 +106,11 @@ class Sidebar extends Component {
               ))}
             </ul>
           </nav>
+          )}
+          {query !== '' && (
+            <p className="search-text">
+              Showing {filteredLocations.length} results. <a href="#" title="Remove all filters" aria-label="Remove all filters" onClick={this.resetFilter}>Click here</a> to reset filter.
+            </p>
           )}
       </div>
     );

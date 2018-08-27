@@ -73,6 +73,7 @@ body {
   padding: 0;
   display: none;
   margin-top: 5px;
+  margin-bottom: 0;
 
 }
 #sidebar.open .location-list {
@@ -95,6 +96,16 @@ body {
 #sidebar .location-list li:hover,  #sidebar .location-list li:focus{
   background-color: rgba(0,0,0,0.5);
   outline: 0;
+}
+#sidebar .search-text {
+  color: #fff;
+  padding: 10px;
+  margin: 0;
+  font-size: 12px;
+  border-top: 1px solid #555;
+}
+#sidebar .search-text a {
+  color: #fff;
 }
 #map {
   position: fixed;
