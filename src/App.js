@@ -88,9 +88,12 @@ class App extends Component {
   getLocationData = (venueId) => {
     return fetch('https://api.foursquare.com/v2/venues/'+venueId+'?client_id='+fsId+'&client_secret='+fsScrt+'&v=201800826')
       .then((res) => {
-        if(res.status !== 200) {
+        if(res.status === 429) {
+          throw Error('Quota Limit Reached. HTTP Code: ' + res.status)
+        } else if(res.status !== 200) {
           throw Error('Foursquare Data. HTTP Code: ' + res.status)
         }
+
         return res.json()
       })
       .then(data => {

@@ -71,7 +71,7 @@ class Sidebar extends Component {
     const filteredLocations = filterLocations(query, locations)
 
     return (
-      <div id="sidebar" className={toggleClass}>
+      <aside id="sidebar" className={toggleClass}>
           <div className="sidebar-toggle"
             tabIndex="0"
             aria-label="Toggle Sidebar" 
@@ -117,7 +117,7 @@ class Sidebar extends Component {
               Showing {filteredLocations.length} results. <a href="#removefilters" title="Remove all filters" aria-label="Remove all filters" onClick={this.resetFilter}>Click here</a> to reset filter.
             </p>
           )}
-      </div>
+      </aside>
     );
   }
 }

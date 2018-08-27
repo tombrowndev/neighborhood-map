@@ -12,6 +12,7 @@ class Map extends PureComponent {
       console.log('Error loading the Google Maps Javascript API. Please check the script tag and credentials.')
     }
   }
+  
   render() {
     const { locations, infoWindowOpen, activeLocation, locationData, toggleInfoWindow, query } = this.props
     const element = <div style={{ height: `100%` }} />
@@ -20,7 +21,7 @@ class Map extends PureComponent {
     const filteredLocations = filterLocations(query, locations)
 
     return (
-      <div id="map">
+      <div id="map" role="application">
         {window.google ? (
         <DumbGoogleMap
           loadingElement={element}
@@ -72,7 +73,7 @@ const DumbGoogleMap = withGoogleMap((props) => (
 
       {props.infoWindowOpen && props.activeLocation === location.id && (
           <InfoWindow onCloseClick={() => { props.toggleInfoWindow(location) }}>
-            <div id="infoCard" tabIndex="0" autofocus>
+            <div id="infoCard" tabIndex="0" autoFocus>
               <h4 tabIndex="0">{location.name}</h4>
               <hr/>
               {props.locationData.hasOwnProperty('error') ? (
@@ -80,13 +81,13 @@ const DumbGoogleMap = withGoogleMap((props) => (
               ):(
               <div className="foursquare-data">
                 <b>Rating</b>
-                <p>{props.locationData.rating}</p>
+                <p aria-label="Customer rating" tabIndex="0">{props.locationData.rating}</p>
                 <b>Status</b>
-                <p>{props.locationData.status}</p>
+                <p aria-label="Open status" tabIndex="0">{props.locationData.status}</p>
                 <b>Contact</b>
-                 <p>{props.locationData.phone}</p>
+                <p aria-label="Contact" tabIndex="0">{props.locationData.phone}</p>
                 <hr/>
-                <p>Data from the <a href="https://foursquare.com">Foursquare API</a></p>
+                <p>Data from <a href={"https://foursquare.com/v/" + location.foursquareId} target="_blank">Foursquare</a></p>
               </div>
               )}
             </div>
