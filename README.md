@@ -10,6 +10,7 @@ To get started developing right away:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+* build production with `npm build`
 
 ## Dependencies
 Below is a list of project dependancies. These are either included in the html via a CDN, or will be installed using `npm install` (see above)
