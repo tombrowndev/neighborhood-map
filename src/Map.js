@@ -46,7 +46,9 @@ const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
         key={location.id}
         position={location.position}
         title={location.name}
-        onClick={() => { props.toggleInfoWindow(location.id) }}>
+        onClick={() => { props.toggleInfoWindow(location.id) }}
+        animation={(props.infoWindowOpen && props.activeLocation === location.id) ? 1 : 3}
+      >
 
       {props.infoWindowOpen && props.activeLocation === location.id && (
           <InfoWindow onCloseClick={() => { props.toggleInfoWindow(location.id) }}>
