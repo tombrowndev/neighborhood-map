@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import menuIcon from './menu.svg'
 
+/* Utilities */
+import {filterLocations} from './utils'
+
 class Sidebar extends Component {
   state = {
     sidebarOpen: false,
@@ -33,13 +36,13 @@ class Sidebar extends Component {
 
   render() {
     const {sidebarOpen, filterValue} = this.state
-    const {locations, toggleInfoWindow, infoWindowOpen, activeLocation} = this.props
+    const {locations, toggleInfoWindow, infoWindowOpen, activeLocation, updateFilterQuery, query} = this.props
 
     // Determine toggle button state
     const toggleClass = sidebarOpen ? 'open' : 'closed'
 
     // Filter locations
-    
+    const filteredLocations = filterLocations(query, locations)
 
     return (
       <div id="sidebar" className={toggleClass}>
@@ -54,10 +57,11 @@ class Sidebar extends Component {
             <img alt="Hamburger Icon" src={menuIcon} />
           </div>
           <div className="filter-control">
-            <input type="text" value={filterValue} onChange={this.handleFilterInput} aria-label="Filter Locations"/>
+            <input type="text" value={filterValue} placeholder="Filter Locations" onChange={this.handleFilterInput} aria-label="Filter Locations"/>
+            <input type="button" onClick={() => { updateFilterQuery(filterValue) }} value="Filter"/>
           </div>
           <ul className="location-list">
-            {locations.length && locations.map((location) => (
+            {filteredLocations.length && filteredLocations.map((location) => (
               <li 
                 key={location.id} 
                 tabIndex="0"

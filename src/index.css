@@ -31,10 +31,35 @@ body {
   background-color: rgba(0,0,0,0.5);
   outline: 0;
 }
+#sidebar .filter-control {
+  display: flex;
+  position: relative;
+}
+#sidebar .filter-control input[type=text] {
+  width: 200px;
+  height: 40px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+#sidebar .filter-control input[type=button] {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: url(filter.svg) #7919e8 10px 10px no-repeat;
+  background-size: 20px;
+  font-size: 0;
+  line-height: 0;
+  cursor: pointer;
+}
+#sidebar .filter-control input[type=button]:hover, #sidebar .filter-control input[type=button]:focus {
+  background-color: #924ee0;
+  outline: 0;
+}
 #sidebar .location-list {
   list-style-type: none;
   padding: 0;
   display: none;
+
 }
 #sidebar.open .location-list {
   display: block;

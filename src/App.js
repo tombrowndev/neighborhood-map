@@ -60,9 +60,9 @@ class App extends Component {
     })
   }
 
-  // Handles the filter text input
-  updateFilterQuery = (event) => {
-    this.setState({query: event.target.value})
+  // Updates the query
+  updateFilterQuery = (query) => {
+    this.setState({query: query})
   }
 
   render() {

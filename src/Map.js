@@ -4,10 +4,16 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'reac
 /* Config */
 import {gmKey} from './config'
 
+/* Utilities */
+import {filterLocations} from './utils'
+
 class Map extends PureComponent {
   render() {
-    const { locations, infoWindowOpen, activeLocation, toggleInfoWindow } = this.props
+    const { locations, infoWindowOpen, activeLocation, toggleInfoWindow, query } = this.props
     const element = <div style={{ height: `100%` }} />
+
+    // Filter locations
+    const filteredLocations = filterLocations(query, locations)
 
     return (
       <div id="map">
@@ -16,7 +22,7 @@ class Map extends PureComponent {
           loadingElement={element}
           containerElement={element}
           mapElement={element}
-          locations={locations}
+          locations={filteredLocations}
           infoWindowOpen={infoWindowOpen}
           activeLocation={activeLocation}
           toggleInfoWindow={toggleInfoWindow}
