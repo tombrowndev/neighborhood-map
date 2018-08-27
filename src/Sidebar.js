@@ -34,11 +34,16 @@ class Sidebar extends Component {
     }
   }
 
-  // If the user is focused on a list and presses space or enter
+  // If the user is focused on a list and presses space, enter or tab
   handleListItemKeyDown = (event, location) => {
     if(event.keyCode === 32 || event.keyCode === 13) {
       this.props.toggleInfoWindow(location)
     }
+  }
+
+  // Moves focus to the info card
+  focusToInfoCard = () => {
+    document.getElementById('infoCard').infoCard.focus()
   }
 
   // If the user is focused on a list and presses enter
@@ -109,7 +114,7 @@ class Sidebar extends Component {
           )}
           {query !== '' && (
             <p className="search-text">
-              Showing {filteredLocations.length} results. <a href="#" title="Remove all filters" aria-label="Remove all filters" onClick={this.resetFilter}>Click here</a> to reset filter.
+              Showing {filteredLocations.length} results. <a href="#removefilters" title="Remove all filters" aria-label="Remove all filters" onClick={this.resetFilter}>Click here</a> to reset filter.
             </p>
           )}
       </div>

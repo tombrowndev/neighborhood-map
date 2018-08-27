@@ -72,8 +72,8 @@ const DumbGoogleMap = withGoogleMap((props) => (
 
       {props.infoWindowOpen && props.activeLocation === location.id && (
           <InfoWindow onCloseClick={() => { props.toggleInfoWindow(location) }}>
-            <div className="info-card">
-              <h4>{location.name}</h4>
+            <div id="infoCard" tabIndex="0" autofocus>
+              <h4 tabIndex="0">{location.name}</h4>
               <hr/>
               {props.locationData.hasOwnProperty('error') ? (
                 <p>{props.locationData.error}</p>
