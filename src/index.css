@@ -84,6 +84,7 @@ body {
   display: block;
   padding: 15px 10px;
   cursor: pointer;
+  font-size: 14px;
 }
 #sidebar .location-list li.active {
   background-color: #fff;
@@ -115,9 +116,39 @@ body {
   left: 50px;
   z-index: 500;
 }
+#map .map-error {
+  display: flex;
+  margin: 0;
+  padding: 40px;
+  height: 100%;
+  align-items: left;
+  justify-content: centopter;
+  background-color: #a5d8fd;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+#map .map-error h2 {
+  font-size: 30px;
+  margin: 10px 0;
+  font-style: italic;
+}
+#map .map-error p {
+  font-size: 14px;
+  line-height: 1.3;
+}
 
 /* ########### Responsive ########### */
 @media screen and (min-width: 768px) {
+  #map .map-error {
+    padding: 80px;
+  }
+  #map .map-error h2 {
+    font-size: 50px;
+    margin: 20px 0;
+  }
+  #map .map-error p {
+    font-size: 15px;
+  }
   #sidebar {
     padding-top: 0px;
   }

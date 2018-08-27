@@ -1,14 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types'
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
-
-/* Config */
-import {gmKey} from './config'
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 /* Utilities */
 import {filterLocations} from './utils'
 
 class Map extends PureComponent {
+  componentDidMount() {
+    // Error to the console if maps is not available
+    if(!window.google) {
+      console.log('Error loading the Google Maps Javascript API. Please check the script tag and credentials.')
+    }
+  }
   render() {
     const { locations, infoWindowOpen, activeLocation, locationData, toggleInfoWindow, query } = this.props
     const element = <div style={{ height: `100%` }} />
@@ -18,8 +21,8 @@ class Map extends PureComponent {
 
     return (
       <div id="map">
+        {window.google ? (
         <DumbGoogleMap
-          googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3&key=" + gmKey}
           loadingElement={element}
           containerElement={element}
           mapElement={element}
@@ -29,8 +32,14 @@ class Map extends PureComponent {
           locationData={locationData}
           toggleInfoWindow={toggleInfoWindow}
         />
+        ) : (
+          <div className="map-error">
+            <h2>Whoops!&hellip;</h2>
+            <p>Sorry, but we are having trouble loading the map at the moment.</p>
+          </div>
+        )}
       </div>
-    );
+    )
   }
 }
 
@@ -44,7 +53,7 @@ Map.propTypes = {
 }
 
 // The dumb container which includes the scripts required for the google maps api
-const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
+const DumbGoogleMap = withGoogleMap((props) => (
   <GoogleMap
     defaultZoom={15}
     defaultCenter={{
@@ -88,10 +97,9 @@ const DumbGoogleMap = withScriptjs(withGoogleMap((props) => (
 
     ))}
   </GoogleMap>
-)))
+))
 
 DumbGoogleMap.propTypes = {
-  googleMapURL: PropTypes.string.isRequired,
   loadingElement: PropTypes.object.isRequired,
   containerElement: PropTypes.object.isRequired,
   mapElement: PropTypes.object.isRequired,
